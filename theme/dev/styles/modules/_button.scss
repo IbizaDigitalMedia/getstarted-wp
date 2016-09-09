@@ -1,0 +1,139 @@
+// Button
+
+.button {
+  @include transition(all 0.2s $ease-in-out-quad);
+  @include linear-gradient(to bottom, $colour-button, darken($colour-button, 10%));
+
+  position: relative;
+  display: inline-block;
+  margin-bottom: 5px;
+
+  overflow: hidden;
+  background-size: 1% 400%;
+
+  a {
+    @include fill-parent();
+
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    padding: em(8) em(10);
+
+    color: $colour-button-text;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+      color: $colour-button-text-hover;
+    }
+  }
+
+  .gel {
+    @include transform(scale(0));
+    @include radial-gradient(circle at 50% 50%, $colour-gel 70%, rgba($colour-gel, 0.5));
+
+    position: absolute;
+    z-index: 1;
+    display: block;
+
+    border-radius: 100%;
+    opacity: 0.3;
+
+    &.animate {
+      animation: ripple 0.65s $ease-in-out-quad;
+    }
+  }
+
+  &.xs {
+    font-size: modular-scale(-1);
+  }
+
+  &.sm {
+    font-size: modular-scale(0);
+  }
+
+  &.md {
+    font-size: modular-scale(1);
+  }
+
+  &.lg {
+    font-size: modular-scale(2);
+
+    @include make-breakpoint(sm) {
+      font-size: modular-scale(1);
+    }
+  }
+
+  &.xl {
+    font-size: modular-scale(3);
+
+    @include make-breakpoint(sm) {
+      font-size: modular-scale(2);
+    }
+  }
+
+  &.block {
+    display: block;
+
+    &.half {
+      width: calc(100% / 2);
+    }
+
+    &.third {
+      width: calc(100% / 3);
+    }
+  }
+
+  &.inverted {
+    @include linear-gradient(to bottom, $colour-white, darken($colour-white, 10%));
+
+    border: em(1) solid darken($colour-pearl, 15%);
+
+    .gel {
+      @include radial-gradient(circle at 50% 50%, rgba($colour-button, 0.2), rgba($colour-button, 0.5));
+    }
+
+    a {
+      color: $colour-button;
+    }
+
+    &:hover {
+      border: em(1) solid darken($colour-pearl, 20%);
+    }
+  }
+
+  &.success {
+    @include linear-gradient(to bottom, $colour-success, darken($colour-success, 10%));
+
+    a {
+      color: $colour-white;
+    }
+  }
+
+  &.error {
+    @include linear-gradient(to bottom, $colour-error, darken($colour-error, 10%));
+
+    a {
+      color: $colour-white;
+    }
+  }
+
+  &.warning {
+    @include linear-gradient(to bottom, $colour-warning, darken($colour-warning, 10%));
+
+    a {
+      color: $colour-white;
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    @include transition(all 0.2s $ease-in-out-quad);
+    @include shadow-down();
+
+    cursor: pointer;
+    background-position: 100%;
+  }
+}

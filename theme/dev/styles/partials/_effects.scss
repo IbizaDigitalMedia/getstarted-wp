@@ -1,0 +1,13 @@
+// Effects
+
+@mixin shadow() {
+  box-shadow: 0 0 em(2.5) 0 rgba($colour-slate, 0.25);
+}
+
+@mixin shadow-down() {
+  box-shadow: 0 em(2) em(2) em(-2) rgba($colour-slate, 0.3);
+}
+
+@mixin text-shadow() {
+  text-shadow: 0 0 em(3) rgba($colour-sea, 0.2);
+}

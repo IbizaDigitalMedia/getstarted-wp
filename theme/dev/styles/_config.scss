@@ -1,0 +1,155 @@
+//
+// Grid
+//
+
+// Max width of container class
+// default: 1200px
+$container-max-width: 1200px !default;
+
+// Container padding
+// default: 1.875em
+$container-padding: 1.875em !default;
+
+// Enables full width container
+// default: false
+$container-full-width: false !default;
+
+// Enables flex grid (experimental)
+// default: false
+$flex-grid: false !default;
+
+// Fluid type ratio
+// default: 1.33
+$fluid-type-ratio: 1 + (1 / 3);
+
+// EM base (for converting px to em)
+// default: 16px
+$em-base: 16px !default;
+
+// Number of grid columns
+// default: 12
+$grid-columns: 12 !default;
+
+// Gutter width (accepts em)
+// default: 1.875em (30px)
+$gutter: 1.875em !default;
+
+// Debug mode
+// default: false
+$debug: false !default;
+
+
+//
+// Typography
+//
+
+// Header font family
+// default: "Open Sans", Helvetica, Arial, sans-serif;
+$header-font-family: "Open Sans", Helvetica, Arial, sans-serif !default;
+
+// Body font family
+// default: "Open Sans", Helvetica, Arial, sans-serif;
+$body-font-family: "Open Sans", Helvetica, Arial, sans-serif !default;
+
+// Font weights
+// defaults: 700, 600, 400, 100
+$bold-weight: 700;
+$semibold-weight: 600;
+$normal-weight: 400;
+$light-weight: 100;
+
+//
+// Header font weight
+// default: 600
+$header-font-weight: $semibold-weight !default;
+
+//
+// Body font weight
+// default: 400
+$body-font-weight: $normal-weight !default;
+
+// Minimum body font size
+// default: 12px
+$body-font-size-min: 12px !default;
+
+// Maximum body font size
+// default: 16px
+$body-font-size-max: 16px !default;
+
+// Minimum header font size
+// default: 18px
+$header-font-size-min: 18px !default;
+
+// Maximum header font size
+// default: 36px
+$header-font-size-max: 36px !default;
+
+// Minimum blockquote font size
+// default: 16px
+$blockquote-font-size-min: 16px !default;
+
+// Maximum blockquote font size
+// default: 22px
+$blockquote-font-size-max: 22px !default;
+
+
+//
+// Breakpoints
+//
+
+$breakpoints: (
+  // Extra small phones
+  // default: 0
+  xs: 0,
+
+  // Small screens/phones
+  // default: 480px
+  sm: 480px,
+
+  // Medium screens/tablet
+  // default: 768px
+  md: 768px,
+
+  // Large screens/desktop
+  // default: 992px
+  lg: 992px,
+
+  // Extra large screens/desktop
+  // default: 1200px
+  xlg: 1200px
+) !default;
+
+$fluid-type-breakpoints: (
+  min: sm,
+  max: xlg
+) !default;
+
+//
+// Containers
+//
+
+$containers: (
+  sm: 576px,
+  md: 720px,
+  lg: 940px,
+  xl: $container-max-width
+) !default;
+
+
+//
+// Debug
+//
+
+@if ($debug) {
+  .debug [class*="c-"] {
+    padding: 5px;
+
+    font-size: 12px;
+    text-align: center;
+    background-color: rgba(#000000, 0.15);
+  }
+
+  .row {
+    margin-bottom: $gutter;
+  }
+}

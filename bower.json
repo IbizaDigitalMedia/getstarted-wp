@@ -1,0 +1,33 @@
+{
+  "name": "getstarted-wp",
+  "description": "Opinionated boilerplate. For WordPress.",
+  "main": "index.js",
+  "authors": [
+    "Brett Dorrans <brett@getbrett.co.uk>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "getstarted",
+    "boilerplate",
+    "grid"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "wordpress"
+  ],
+  "dependencies": {
+    "neat": "^1.8.0",
+    "bourbon": "^4.2.7",
+    "reset-css": "^2.0.2011012603",
+    "jquery": "^3.1.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}

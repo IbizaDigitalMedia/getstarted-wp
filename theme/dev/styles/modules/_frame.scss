@@ -1,0 +1,9 @@
+// Frame
+
+.frame {
+  @include gutter-margin(bottom 1);
+  @include gutter-padding(all 1);
+  @include shadow();
+
+  border: em(1) solid $colour-grey;
+}

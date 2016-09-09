@@ -1,0 +1,100 @@
+// Typography
+
+//
+// Headers
+//
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $header-font-family;
+  font-weight: $header-font-weight;
+  color: $colour-header;
+
+  small {
+    font-size: 60%;
+    color: desaturate(lighten($colour-header, 50%), 90%);
+  }
+}
+
+
+//
+// Paragraphs
+//
+
+body,
+p {
+  font-family: $body-font-family;
+  font-weight: $body-font-weight;
+  color: $colour-text;
+}
+
+p {
+  padding-bottom: $gutter;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: $semibold-weight;
+}
+
+// Lead paragraphs
+// Larger font size than default
+.lead {
+  @include gutter-padding(bottom 1.2);
+
+  font-size: 120%;
+}
+
+
+//
+// Anchors
+//
+
+a {
+  @include transition(all 150ms $ease-in-out-quad);
+
+  font-weight: $semibold-weight;
+  color: $colour-link;
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: darken($colour-link, 15%);
+  }
+}
+
+
+//
+// Blockquotes
+//
+
+blockquote {
+  @include gutter-padding(left 0.5);
+  @include gutter-margin(top 0.5, bottom 1);
+
+  position: relative;
+  max-width: map-get($breakpoints, md);
+  margin-right: auto;
+  margin-left: auto;
+
+  color: $colour-header;
+  border-left: em(3) solid lighten($colour-text, 40%);
+
+  cite {
+    display: block;
+
+    color: lighten($colour-text, 40%);
+
+    &:before {
+      content: "\00A0 \2014";
+    }
+  }
+}

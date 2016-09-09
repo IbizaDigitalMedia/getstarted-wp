@@ -1,0 +1,65 @@
+// Typography
+// http://www.sassmeister.com/gist/7f22e44ace49b5124eec
+// modified by Brett Dorrans <brett@getbrett.co.uk>
+
+@mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
+  @each $property in $properties {
+    #{$property}: $min-value;
+  }
+
+  @include media(min-width $min-vw) {
+    @each $property in $properties {
+      #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+    }
+  }
+
+  @include media(min-width $max-vw) {
+    @each $property in $properties {
+      #{$property}: $max-value;
+    }
+  }
+}
+
+@mixin headers($min, $max) {
+  $min-vw: map-get($breakpoints, map-get($fluid-type-breakpoints, min));
+  $max-vw: map-get($breakpoints, map-get($fluid-type-breakpoints, max));
+  $num-headers: 6;
+
+  @for $i from 1 through $num-headers {
+    $base: (($num-headers + 1) - $i);
+
+    h#{$i} {
+      $multiplier: 1 + normalise($base, 1, $num-headers);
+      $base-max: min($min * $multiplier, $max);
+      $padding-max: ($base-max / 4) * $multiplier;
+      $padding-min: $padding-max - ($padding-max / 4);
+
+      @include fluid-type(font-size, $min-vw, $max-vw, $min, $base-max);
+      @include fluid-type(padding-bottom padding-top, $min-vw, $max-vw, $padding-min, $padding-max);
+    }
+
+  }
+}
+
+@mixin body($min, $max) {
+  $min-vw: map-get($breakpoints, map-get($fluid-type-breakpoints, min));
+  $max-vw: map-get($breakpoints, map-get($fluid-type-breakpoints, max));
+
+  body,
+  p {
+    @include fluid-type(font-size, $min-vw, $max-vw, $min, $max);
+    @include fluid-type(line-height, $min-vw, $max-vw, $min * $fluid-type-ratio, $max * $fluid-type-ratio);
+  }
+
+  blockquote {
+    @include fluid-type(font-size, $min-vw, $max-vw, $blockquote-font-size-min, $blockquote-font-size-max);
+    @include fluid-type(line-height, $min-vw, $max-vw, $blockquote-font-size-min * $fluid-type-ratio, $blockquote-font-size-max * $fluid-type-ratio);
+  }
+
+  cite {
+    @include fluid-type(font-size, $min-vw, $max-vw, $blockquote-font-size-min / $fluid-type-ratio, $blockquote-font-size-max / $fluid-type-ratio);
+  }
+}
+
+@include headers($header-font-size-min, $header-font-size-max);
+@include body($body-font-size-min, $body-font-size-max);

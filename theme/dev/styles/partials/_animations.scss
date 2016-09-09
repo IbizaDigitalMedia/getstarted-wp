@@ -1,0 +1,9 @@
+// Animations
+
+@keyframes ripple {
+  100% {
+    @include transform(scale(2.5));
+
+    opacity: 0;
+  }
+}

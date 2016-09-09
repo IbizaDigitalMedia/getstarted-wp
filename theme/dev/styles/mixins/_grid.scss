@@ -1,0 +1,94 @@
+// Grid
+
+@mixin make-containers($containers: $containers) {
+  padding: $container-padding;
+
+  @each $breakpoint, $width in $containers {
+    @include media(min-width $width) {
+
+      @if $container-full-width {
+        max-width: 100%;
+      }
+      @else {
+        max-width: $width;
+      }
+    }
+  }
+}
+
+@mixin make-breakpoint($name, $breakpoints: $breakpoints) {
+  $min: map-get($breakpoints, $name);
+  $min: if($min != 0, $min, null);
+
+  @if ($min) {
+    @include media(min-width $min) {
+      @content;
+    }
+  }
+  @else {
+    @content;
+  }
+}
+
+@mixin make-shift($breakpoint, $column) {
+  .s-#{$breakpoint}-#{$column} {
+    @include shift($column);
+  }
+}
+
+@mixin make-column($breakpoint, $column) {
+  .c-#{$breakpoint}-#{$column} {
+    @include span-columns($column);
+  }
+
+  .c-#{$breakpoint}-#{$column}-ng {
+    @include span-columns($column, block-collapse);
+
+    margin-right: 0;
+  }
+}
+
+@mixin make-grid($columns: $grid-columns, $breakpoints: $breakpoints) {
+  @if not $flex-grid {
+    @each $breakpoint, $size in $breakpoints {
+      @include make-breakpoint($breakpoint) {
+        @for $column from 1 through $columns {
+          @include make-column($breakpoint, $column);
+          @include make-shift($breakpoint, $column);
+        }
+      }
+    }
+  }
+  @else {
+    // TODO: Flex grid support
+  }
+}
+
+@mixin make-full-width() {
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  margin-right: 0;
+  margin-left: -50vw;
+}
+
+.container {
+  @include make-containers();
+
+  margin-right: auto;
+  margin-left: auto;
+
+  &.full-width {
+    max-width: 100%;
+  }
+}
+
+.row {
+  @include row();
+
+  &.full-width {
+    @include make-full-width();
+  }
+}
+
+@include make-grid();

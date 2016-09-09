@@ -1,0 +1,48 @@
+/*
+ * getstarted-wp
+ * Author:  Brett Dorrans <brett@getbrett.co.uk>
+ * Version: 2.0.1
+ * License: MIT
+ */
+
+// scss-lint:disable all
+// bower:scss
+@import "../vendor/neat/app/assets/stylesheets/_neat.scss";
+@import "../vendor/bourbon/app/assets/stylesheets/_bourbon.scss";
+@import "../vendor/reset-css/_reset.scss";
+// endbower
+// scss-lint:enable all
+
+
+//
+// Core config
+//
+
+@import "config";
+
+
+//
+// Mixins
+//
+
+@import "mixins/grid";
+@import "mixins/helpers";
+@import "mixins/typography";
+
+//
+// Partials
+//
+
+@import "partials/animations";
+@import "partials/colours";
+@import "partials/typography";
+@import "partials/effects";
+
+
+//
+// Modules
+//
+
+@import "modules/body";
+@import "modules/button";
+@import "modules/frame";

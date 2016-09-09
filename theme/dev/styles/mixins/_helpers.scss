@@ -1,0 +1,148 @@
+// Helpers
+
+//
+// Accepts a Sass list of directions and sizes
+// for applying padding to elements.
+//
+// Example:
+//    @include gutter-padding(top 1, right 1, bottom 2, left 1);
+//
+//    @param  {list} $padding... List of directions and sizes
+//
+@mixin gutter-padding($padding...) {
+  @each $direction, $value in $padding {
+    @if $direction == "all" {
+      padding: $value * $gutter;
+    }
+    @else {
+      padding-#{$direction}: $value * $gutter;
+    }
+  }
+}
+
+//
+// Accepts a Sass list of directions and sizes
+// for applying margin to elements.
+//
+// Example:
+//    @include gutter-margin(top 1, right 1, bottom 2, left 1);
+//
+//    @param  {list} $margin... List of directions and sizes
+//
+@mixin gutter-margin($margin...) {
+  @each $direction, $value in $margin {
+    @if $direction == "all" {
+      margin: $value * $gutter;
+    }
+    @else {
+      margin-#{$direction}: $value * $gutter;
+    }
+  }
+}
+
+//
+// Container for elements that are centered
+// vertically.
+//
+// NOTE: The parent element must have a declared height
+//
+// Example:
+//   .outer {
+//     @include valign-outer($height: 100%);
+//
+//     // Element to be centered vertically
+//     .inner {
+//       @include valign-inner();
+//     }
+//   }
+//
+@mixin valign-outer($height: 100%) {
+  position: relative;
+  height: $height;
+}
+
+//
+// Center element vertically inside a
+// valign-outer.
+//
+// Example:
+//   @see valign-outer()
+//
+@mixin valign-inner() {
+  @include transform(translateY(-50%));
+  position: relative;
+  top: 50%;
+  display: block;
+}
+
+@mixin make-hide-helpers($breakpoints: $breakpoints) {
+  .hide {
+    display: none;
+  }
+
+  .show {
+    display: initial;
+  }
+
+  .visible {
+    visibility: visible;
+  }
+
+  .invisible {
+    visibility: hidden;
+  }
+
+  @each $breakpoint, $size in $breakpoints {
+    @include make-breakpoint($breakpoint) {
+      .hide-on-#{$breakpoint} {
+        display: none;
+      }
+
+      .show-on-#{$breakpoint} {
+        display: initial;
+      }
+
+      .visible-on-#{$breakpoint} {
+        visibility: visible;
+      }
+
+      .invisible-on-#{$breakpoint} {
+        visibility: hidden;
+      }
+    }
+  }
+}
+
+@mixin make-align-helpers($breakpoints: $breakpoints) {
+  @each $alignment in (left, center, right) {
+    .align-#{$alignment} {
+      text-align: $alignment;
+    }
+  }
+
+  @each $breakpoint, $size in $breakpoints {
+    @each $alignment in (left, center, right) {
+      @include make-breakpoint($breakpoint) {
+        .align-#{$breakpoint}-#{$alignment} {
+          text-align: $alignment;
+        }
+      }
+    }
+  }
+}
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@function clamp($value, $min, $max) {
+  @return min(max($value, $min), $max);
+}
+
+@function normalise($value, $min, $max) {
+  $normalized: ($value - $min) / ($max - $min);
+  @return $normalized;
+}
+
+@include make-hide-helpers();
+@include make-align-helpers();
