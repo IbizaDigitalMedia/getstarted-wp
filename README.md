@@ -8,7 +8,10 @@
 ## Quickstart
 ```
 Clone repository into a directory:
-  git clone https://github.com/brettdorrans/getstarted-wp.git <directory>
+  git clone https://github.com/brettdorrans/getstarted-wp.git <directory> && cd <directory>
+
+Initialise and clone WordPress submodule
+  git submodule init && git submodule update
 
 Remove `origin` remote:
   git remote rm origin
